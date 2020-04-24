@@ -2,7 +2,7 @@ from distutils.core import setup
 setup(
   name = 'eulerlabs',        
   packages = ['eulerlabs'],   
-  version = '0.1',      
+  #version = '',      
   license='MIT',        
   description = 'SQL driven Data Science in Python',  
   author = 'Anil Singh',                  
