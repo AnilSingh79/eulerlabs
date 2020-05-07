@@ -11,8 +11,7 @@ setup(
   download_url = 'https://github.com/AnilSingh79/eulerlabs/archive/v0.1.tar.gz',   
   keywords = ['Data Science', 'SQLite', 'SQL', 'CSV','SQL query'],   # Keywords that define your package best
   install_requires=[            # I get to this in a second
-          'validators',
-          'pysqlite',
+          #'pysqlite',
           'numpy'
       ],
   classifiers=[
