@@ -72,17 +72,11 @@ def create_table_qry(tabName, varDict={}, uniqueIdFlag=False,uIdName='PYDAN_ROW_
         if(uniqueIdFlag == True):
             query = query + uIdName+'        VARCHAR,\n '
         varterms = []
-        #for var in varNames:
-        #    if var not in varTypes: varTypes[var]='VARCHAR'       
-#        if (len(varTypes)==0):
-#            for var in varNames: varTypes[var]='VARCHAR'
-        #print (varDict)
         for varname in varDict:
             vartype = varDict[varname]            
             varterms.append('       '.join([varname,vartype]))
         query = query+ ',\n '.join(varterms)
         query = query+'\n )'
-    
         return query
     except Exception as err:
         print_error(err, 'euler.create_table_qry')        
@@ -175,26 +169,6 @@ def run(query,conn,mute=False,nice_print=False, verbose=False):
         print_error(err,'Euler.run')
 
 
-        
-
-"""
-def get_bysql2(query,conn,verbose=False):
-    'Returns list of lists data fetched by query rowXcolumns format'
-    try:
-        #query = query.replace('?srcName?',tabName)
-        if verbose==True : print (query)
-        results = conn.cursor().execute(query)
-        if results != None
-        dataSet = []
-        for r in results:
-            rList = list(r)
-            dataSet.append(rList)
-        return dataSet  
-    except Exception as err:
-        
-        print ("\n\n****Exception Encountered****\n")
-        print ('Not Happy With \n'+query)
-        print_error(err,'euler.get_bysql')
 """
 def print_logo():
     logo='''
@@ -208,7 +182,8 @@ def print_logo():
     logo = '\n'.join([l.strip() for l in logo.split('\n')])
     print (logo)
 #print_logo()
-        
+"""
+
 def download_csv_bysql(query,conn,write_to,verbose=False):
     'Returns list of lists data fetched by query rowXcolumns format'
     try:
@@ -527,8 +502,12 @@ def csvToSqlite(csvfile,sqlitefile,tabName):
         print_error(err)
         
 
-def list2DToSqlite(headerList1D,dataList2D,tabName,dbFile,tempFile):
+def list2D_tosqlite(headerList1D,dataList2D,tabName,dbFile,tempFile):
     try:
+        """
+        Note: This is to be changed. It should rather use 
+        dict_tosqlite.
+        """
         file = open(tempFile,'w')
         file.write(','.join(headerList1D)+'\n')
         for week in dataList2D:
@@ -594,29 +573,7 @@ def dict_tosqlite(headcolDict,tabName,conn):
     except Exception as err:
         print_error(err,'euler.dict_tosqlite')
         
-        
-
-def create_temp_table(data_dict,tabName,conn=None):
-    try:
-        if conn is None:
-            conn = connection(':memory:')
-        dict_tosqlite(data_dict,tabName,conn)
-        return conn, tabName
-    except Exception as err:
-        print_error(err,'euler.create_temp_table')
-        if conn != None:
-            conn.close()
-        raise err
-        
-        
-def drop_temp_table(tabName,conn=None):
-        if conn is None:
-            conn = connection(':memory:')
-        try:
-            conn.execute('drop table if exists '+tabName)
-        except Exception as err:
-            print_error(err,'euler.drop_temp_table')
-            raise err
+ 
 
 #@# LOGGING System
 ##Open a logging system.
