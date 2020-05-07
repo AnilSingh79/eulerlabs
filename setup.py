@@ -8,12 +8,9 @@ setup(
   author = 'Anil Singh',                  
   author_email = 'singh.ap79@gmail.com',      
   url = 'https://github.com/AnilSingh79/eulerlabs',  
-  download_url = 'https://github.com/AnilSingh79/eulerlabs/archive/v0.1.tar.gz',   
+  download_url = 'https://github.com/AnilSingh79/eulerlabs/archive/v1.tar.gz',   
   keywords = ['Data Science', 'SQLite', 'SQL', 'CSV','SQL query'],   # Keywords that define your package best
-  install_requires=[            # I get to this in a second
-          #'pysqlite',
-          'numpy'
-      ],
+  install_requires=[],
   classifiers=[
     'Development Status :: 5 - Production/Stable',      
     'Intended Audience :: Developers',      # Define that your audience are developers
